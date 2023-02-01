@@ -1,44 +1,48 @@
 import { useEffect, useState } from 'react'
-import { urlApi } from '../const/const';
 import Carousel from 'react-bootstrap/Carousel';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import CarouselPrimaryPH from '../placeholders/CarouselPrimaryPH';
+import { getThereProducts } from '../app/features/primary-carousel/primaryCarousel';
 
 
 const CarouselPrimary = () => {
-  const [products, setProducts] = useState([]);
-
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state);
+  console.log(state);
   useEffect(() => {
-    fetch(`${urlApi}/products?offset=0&limit=3`)
-      .then(res => res.json())
-      .then(data => setProducts(data))
-      //.then(data => console.log(data))
-      .catch(e => console.log('We have an error', e))
+    dispatch(getThereProducts())
   }, [])
+
+  if (state.primaryCarouselSlice.isLoading) return <CarouselPrimaryPH />
+
   return (
     <section className="primary-slider">
       <div className="container mt-1">
-        {products ?
+        {state ?
           <Carousel>
             {
-              products.map((product) => (
+              state.primaryCarouselSlice.data && state.primaryCarouselSlice.data.map((product) => (
                 <Carousel.Item key={product.id} className="slide">
-                  <Link to={`product/${product.id}`}>
-                    <img
-                      className="image-slide"
-                      src={product.images[0].replace('640', '1500')}
-                      alt={product.title}
-                    />
-                    <Carousel.Caption>
+                  <img
+                    className="image-slide d-block w-100"
+                    src={product.images[0].replace('640', '1500')}
+                    alt={product.title}
+                  />
+                  <Carousel.Caption className='text-start'>
+                    <div className="text">
                       <h3>{product.title}</h3>
                       <p>{product.description}</p>
-                    </Carousel.Caption>
-                  </Link>
+                      <Link to={`product/${product.id}`} className="btn btn-outline-light">See more</Link>
+                    </div>
+                  </Carousel.Caption>
                 </Carousel.Item>
               ))
             }
           </Carousel>
           :
-          ''}
+          ''
+        }
       </div>
     </section >
   )
