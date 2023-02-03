@@ -5,7 +5,7 @@ import { urlApi } from "../../../const/const";
 export const getAllProducts = createAsyncThunk(
   'products/getProducts',
   async () => {
-    const res = await fetch(`${urlApi}/products`).then(
+    const res = await fetch(`${urlApi}/products?offset=0&limit=30`).then(
       (data) => data.json()
     )
     return res

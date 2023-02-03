@@ -135,3 +135,39 @@ footer .social-network li:last-child {
 .navbar {
   background-color: var(--dark-color);
 }
+
+.products {
+  margin-bottom: 120px;
+}
+
+.products .product.card {}
+
+.products .product.card {
+  border-radius: unset;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  max-height: 350px;
+}
+
+.products .product.card .price {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.products .product.card .price .off {
+  background-color: var(--secondary-color);
+  font-size: 12px;
+  padding: 3px;
+  margin-left: 5px;
+}
+
+.products .product.card .card-title {
+  font-size: 16px;
+}
+
+.products .product.card .card-img-top {
+  border-radius: unset;
+  max-height: 250px;
+  object-fit: cover;
+}
