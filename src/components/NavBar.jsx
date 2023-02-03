@@ -6,7 +6,7 @@ import { Link, NavLink } from 'react-router-dom';
 
 const NavBar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-dark">
       <div className="container">
         <Link className="navbar-brand" to="/">
           <FontAwesomeIcon icon={faStoreAlt} /> {' '}
