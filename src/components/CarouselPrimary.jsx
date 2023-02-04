@@ -9,7 +9,6 @@ import { getThereProducts } from '../app/features/primary-carousel/primaryCarous
 const CarouselPrimary = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
-  console.log(state);
   useEffect(() => {
     dispatch(getThereProducts())
   }, [])
@@ -18,7 +17,7 @@ const CarouselPrimary = () => {
 
   return (
     <section className="primary-slider">
-      <div className="container mt-1">
+      <div className="container">
         {state ?
           <Carousel>
             {

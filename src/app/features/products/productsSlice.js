@@ -15,8 +15,15 @@ export const getAllProducts = createAsyncThunk(
 
 export const sliceProducts = createSlice({
   name: 'sliceproducts',
-  initialState: { isLoading: false, sixProducts: null, allProducts: null, isError: false },
-  reducers: {},
+  initialState: { isLoading: false, sixProducts: null, allProducts: null, isError: false, range: null },
+  reducers: {
+    defineRange: (state, action) => {
+      state.range = action.payload;
+    },
+    resetRange: (state) => {
+      state.range = null;
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(getAllProducts.pending, (state, action) => {
       state.isLoading = true;
@@ -24,7 +31,6 @@ export const sliceProducts = createSlice({
     builder.addCase(getAllProducts.fulfilled, (state, action) => {
       state.isLoading = false;
       state.allProducts = action.payload;
-      //console.log(action.payload);
     })
     builder.addCase(getAllProducts.rejected, (state, action) => {
       console.log('Error', action.payload)
@@ -32,5 +38,7 @@ export const sliceProducts = createSlice({
     });
   },
 })
+
+export const { defineRange, resetRange } = sliceProducts.actions;
 
 export default sliceProducts.reducer;

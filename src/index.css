@@ -3,6 +3,7 @@
   --secondary-color: #BFDB38;
   --there-color: #1F8A70;
   --dark-color: #00425A;
+  --dark-color-rgb: 0, 66, 90;
 }
 
 .primary-slider .slide.carousel-item .carousel-caption {
@@ -43,7 +44,11 @@ section.initial-products {
   background-color: rgba(0, 0, 0, .1);
 }
 
-.initial-products .card,
+.initial-categories .card.product-placeholder {
+  border: 1px solid rgba(0, 0, 0, .1);
+  min-height: 270px;
+}
+
 .initial-categories .card {
   border-radius: unset;
   border: unset;
@@ -170,4 +175,26 @@ footer .social-network li:last-child {
   border-radius: unset;
   max-height: 250px;
   object-fit: cover;
+}
+
+.products .product.card .card-img-top.placeholder {
+  max-height: 250px;
+  min-height: 250px;
+}
+
+.products .pagination .page-item.disabled .page-link {
+  color: var(--bs-gray-500);
+}
+
+.products .pagination .page-item .page-link {
+  color: var(--dark-color);
+  border-radius: unset;
+}
+
+.products .pagination .page-item .page-link:focus {
+  box-shadow: 0 0 0 0.25rem rgba(var(--dark-color-rgb), .05);
+}
+
+.products .pagination .page-item:last-child {
+  margin-left: 10px;
 }

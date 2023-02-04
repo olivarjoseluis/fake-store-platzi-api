@@ -1,10 +1,19 @@
 import { faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button } from "bootstrap";
 import { useState } from "react"
+import { useDispatch } from "react-redux";
+import { defineRange } from "../app/features/products/productsSlice";
+import { useGetProductsByRangeQuery } from "../store/apis/productsApi";
+
+function submitRange(range) {
+  console.log(range);
+
+}
 
 const FiltersProducts = () => {
+  const dispatch = useDispatch();
   const [range, setRange] = useState({ minimum: '', maximum: '' });
+  //useGetProductsByRangeQuery(range);
   const [isError, setIsError] = useState(false);
 
   const handleRange = (e) => {
@@ -16,7 +25,8 @@ const FiltersProducts = () => {
   }
 
   const handleSubmitRange = () => {
-    console.log('Test');
+    dispatch(defineRange(range));
+    //submitRange(range)
   }
 
   return (

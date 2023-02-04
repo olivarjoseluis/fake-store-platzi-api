@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { getSixProducts } from "../app/features/products/sixProductsSlice";
 import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom";
+import InitialCategoriesPH from "../placeholders/InitialCategoriesPH";
 
 const InitialProducts = () => {
   const dispatch = useDispatch();
@@ -10,6 +11,8 @@ const InitialProducts = () => {
   useEffect(() => {
     dispatch(getSixProducts());
   }, [])
+
+  if (state.sixProductsSlice.isLoading) return <InitialCategoriesPH />
 
   return (
     <section className="initial-products">
