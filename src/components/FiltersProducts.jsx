@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react"
 import { useDispatch } from "react-redux";
 import { defineRange } from "../app/features/products/productsSlice";
-import { useGetProductsByRangeQuery } from "../store/apis/productsApi";
+import { useGetProductsByRangeMutation } from "../store/apis/productsApi";
 
 function submitRange(range) {
   console.log(range);
@@ -11,9 +11,15 @@ function submitRange(range) {
 }
 
 const FiltersProducts = () => {
+
   const dispatch = useDispatch();
   const [range, setRange] = useState({ minimum: '', maximum: '' });
-  //useGetProductsByRangeQuery(range);
+
+  if (!isNaN(range.minimum) && !isNaN(range.maximum)) {
+    useGetProductsByRangeMutation(range);
+    console.log('epa');
+  }
+
   const [isError, setIsError] = useState(false);
 
   const handleRange = (e) => {
@@ -25,7 +31,8 @@ const FiltersProducts = () => {
   }
 
   const handleSubmitRange = () => {
-    dispatch(defineRange(range));
+
+    //dispatch(defineRange(range));
     //submitRange(range)
   }
 

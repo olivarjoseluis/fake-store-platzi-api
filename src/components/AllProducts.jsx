@@ -1,21 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { generateRandomNumber } from '../functions/functions';
 import AllProductsPH from '../placeholders/AllProductsPH';
 import { useGetProductsQuery } from '../store/apis/productsApi';
 
 const AllProducts = () => {
-  const range = useSelector((state) => state.productsSlice.range);
-  if (range) {
-    console.log(range);
-  }
 
   const [currentPage, setCurrentPage] = useState(1);
-
   const { isLoading, data: products = [] } = useGetProductsQuery(currentPage);
-
   const nextPage = () => setCurrentPage(currentPage + 1);
-  const prevPage = () => setCurrentPage(currentPage - 1);
+  const prevPage = () => setParams({ ...params, currentPage: currentPage });
 
   if (isLoading) return <AllProductsPH />
 
